@@ -5,6 +5,7 @@
 :root {
   --matr-navbar-bg: #ECECEC;
   --matr-navbar-bg-rgb: 236, 236, 236;
+  --matr-navbar-text-color: white;
 }
 
 /* Change bootstrap variable values.
@@ -12,6 +13,8 @@
  */
 body {
   --bs-light-rgb: var(--matr-navbar-bg-rgb);
+  background: fixed center url("images/2426f83c-d520-4cca-803c-6425759b63a8.webp");
+
 }
 
 /* Set the alert background on the signin and signup pages. */
@@ -25,4 +28,7 @@ body {
   color: var(--bs-dark);
   padding-top: 10px;
   padding-bottom: 20px;
+}
+footer, footer a {
+  color: var(--matr-navbar-text-color);
 }
