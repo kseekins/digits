@@ -42,3 +42,9 @@ body .navbar {
   --bs-navbar-color: var(--matr-navbar-text-color);
   --bs-navbar-hover-color: var(--matr-navbar-highlight-text);
 }
+.navbar a.nav-link.active {
+  color: var(--matr-navbar-highlight-text);
+}
+.navbar a.nav-link.active {
+  color: var(--matr-navbar-highlight-text);
+}
