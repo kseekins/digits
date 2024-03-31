@@ -24,7 +24,6 @@ const ListStuff = () => {
     };
   }, []);
 
-
   const contacts = [{
     firstName: 'Philip', lastName: 'Johnson', address: 'POST 307, University of Hawaii',
     image: 'https://github.com/philipmjohnson.png',
