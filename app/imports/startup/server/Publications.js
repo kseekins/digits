@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Stuffs } from '../../api/stuff/Stuff';
 import { Contacts } from '../../api/contact/contacts';
+import { Notes } from '../../api/note/notes';
 
 // User-level publication.
 // If logged in, then publish documents owned by this user. Otherwise, publish nothing.
@@ -14,6 +15,14 @@ Meteor.publish(Stuffs.userPublicationName, function () {
 });
 
 Meteor.publish(Contacts.userPublicationName, function () {
+  if (this.userId) {
+    const username = Meteor.users.findOne(this.userId).username;
+    return Contacts.collection.find({ owner: username });
+  }
+  return this.ready();
+});
+
+Meteor.publish(Notes.userPublicationName, function () {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;
     return Contacts.collection.find({ owner: username });

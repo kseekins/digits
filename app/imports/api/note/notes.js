@@ -4,7 +4,7 @@ import SimpleSchema from 'simpl-schema';
 /**
  * The ContactsCollection. It encapsulates state and variable values for stuff.
  */
-class ContactsCollection {
+class NotesCollection {
   constructor() {
     // The name of this collection.
     this.name = 'ContactsCollection';
@@ -12,12 +12,10 @@ class ContactsCollection {
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      firstName: String,
-      lastName: String,
-      address: String,
-      image: String,
-      description: String,
+      note: String,
+      contactId: String,
       owner: String,
+      createdAt: Date,
     });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
@@ -31,4 +29,4 @@ class ContactsCollection {
  * The singleton instance of the ContactsCollection.
  * @type {ContactsCollection}
  */
-export const Contacts = new ContactsCollection();
+export const Notes = new NotesCollection();
