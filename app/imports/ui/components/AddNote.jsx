@@ -1,32 +1,30 @@
 import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, ErrorsField, LongTextField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
-import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-import { Contacts } from '../../api/contact/Contacts';
+import PropTypes from 'prop-types';
+import { Notes } from '../../api/note/Notes';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
-  firstName: String,
-  lastName: String,
-  address: String,
-  image: String,
-  description: String,
+  note: String,
+  owner: String,
+  contactId: String,
+  createdAt: Date,
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 /* Renders the AddStuff page for adding a document. */
-const AddContact = () => {
+const AddNote = (owner, contactId) => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { firstName, lastName, address, image, description } = data;
-    const owner = Meteor.user().username;
-    Contacts.collection.insert(
-      { firstName, lastName, address, image, description, owner },
+    const { note, createdAt } = data;
+    Notes.collection.insert(
+      { note, contactId, createdAt, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -44,21 +42,16 @@ const AddContact = () => {
     <Container className="py-3">
       <Row className="justify-content-center">
         <Col xs={10}>
-          <Col className="text-center"><h2>Add Contact</h2></Col>
+          <Col className="text-center"><h2>Add Timestamped Note</h2></Col>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
             <Card>
               <Card.Body>
-                <Row>
-                  <Col><TextField name="firstName" /></Col>
-                  <Col><TextField name="lastName" /></Col>
-                </Row>
-                <Row>
-                  <Col><TextField name="address" /></Col>
-                  <Col><TextField name="image" /></Col>
-                </Row>
-                <LongTextField name="description" />
+                <TextField name="note" />
                 <SubmitField />
                 <ErrorsField />
+                <HiddenField name="owner" value={owner} />
+                <HiddenField name="contactId" value={contactId} />
+                <HiddenField name="createdAt" value={new Date()} />
               </Card.Body>
             </Card>
           </AutoForm>
@@ -68,4 +61,9 @@ const AddContact = () => {
   );
 };
 
-export default AddContact;
+AddNote.propTypes = {
+  owner: PropTypes.string.isRequired,
+  contactId: PropTypes.string.isRequired,
+};
+
+export default AddNote;
