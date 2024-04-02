@@ -7,7 +7,11 @@ import SimpleSchema from 'simpl-schema';
 class NotesCollection {
   constructor() {
     // The name of this collection.
+<<<<<<< Updated upstream
     this.name = 'NotesCollection';
+=======
+    this.name = 'ContactsCollection';
+>>>>>>> Stashed changes
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
@@ -26,7 +30,14 @@ class NotesCollection {
 }
 
 /**
+<<<<<<< Updated upstream
  * The singleton instance of the ContactsCollection.
  * @type {NotesCollection}
  */
 export const Notes = new NotesCollection();
+=======
+ * The singleton instance of the NotesCollection.
+ * @type {NotesCollection}
+ */
+export const Contacts = new NotesCollection();
+>>>>>>> Stashed changes

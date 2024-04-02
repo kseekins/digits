@@ -5,7 +5,10 @@ import { useTracker } from 'meteor/react-meteor-data';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Contact from '../components/Contact';
 import { Contacts } from '../../api/contact/Contacts';
+<<<<<<< Updated upstream
 import { Notes } from '../../api/note/Notes';
+=======
+>>>>>>> Stashed changes
 
 /* Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 const ListContacts = () => {
