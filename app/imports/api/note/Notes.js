@@ -7,7 +7,7 @@ import SimpleSchema from 'simpl-schema';
 class NotesCollection {
   constructor() {
     // The name of this collection.
-    this.name = 'ContactsCollection';
+    this.name = 'NotesCollection';
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
@@ -27,6 +27,6 @@ class NotesCollection {
 
 /**
  * The singleton instance of the ContactsCollection.
- * @type {ContactsCollection}
+ * @type {NotesCollection}
  */
 export const Notes = new NotesCollection();
