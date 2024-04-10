@@ -18,13 +18,13 @@ const formSchema = new SimpleSchema({
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 /* Renders the AddStuff page for adding a document. */
-const AddNote = (owner, contactId) => {
+const AddNote = ({ owner, contactId }) => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
     const { note, createdAt } = data;
     Notes.collection.insert(
-      { note, contactId, createdAt, owner },
+      { note, owner, contactId, createdAt },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -61,7 +61,9 @@ const AddNote = (owner, contactId) => {
   );
 };
 AddNote.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
   owner: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/no-unused-prop-types
   contactId: PropTypes.string.isRequired,
 };
 
